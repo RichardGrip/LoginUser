@@ -1,13 +1,13 @@
 import React from "react";
 import { useState } from "react";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, Spin } from "antd";
 import { useNavigate } from "react-router-dom";
 import "antd/dist/antd.css";
 import "./Login.css";
 
 const Login = () => {
   const [form] = Form.useForm();
-
+  const [state, setState] = React.useState(false);
   const navigate = useNavigate();
   const [requiredMark, setRequiredMarkType] = useState("required");
 
@@ -15,7 +15,8 @@ const Login = () => {
     setRequiredMarkType(requiredMarkValue);
   };
 
-  const onFinish = (e) => {
+  const onFinish = () => {
+    setState(!state);
     localStorage.setItem("isLogin", true);
     setTimeout(() => navigate("/"), 2000);
   };
@@ -64,6 +65,7 @@ const Login = () => {
             </Button>
           </Form.Item>
         </Form>
+        <Spin spinning={state} />
       </div>
     </div>
   );
