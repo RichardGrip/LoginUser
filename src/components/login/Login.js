@@ -32,12 +32,22 @@ const Login = () => {
             name="email"
             rules={[
               { required: true, message: "Please enter your email" },
-              { whitespace: true },
+              { type: "email", message: "Please enter a valid email" },
             ]}
+            hasFeedback
           >
             <Input placeholder="input email" />
           </Form.Item>
-          <Form.Item label="Password" name="password">
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[
+              { required: true, message: "Please enter your password" },
+              { whitespace: true },
+              { min: 8 },
+            ]}
+            hasFeedback
+          >
             <Input.Password placeholder="input password" />
           </Form.Item>
           <Form.Item>
