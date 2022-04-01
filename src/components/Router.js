@@ -4,7 +4,7 @@ import Main from "./main/Main";
 import "antd/dist/antd.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-const Router = () => {
+const Routerq = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -15,4 +15,4 @@ const Router = () => {
   );
 };
 
-export default Router;
+export default Routerq;

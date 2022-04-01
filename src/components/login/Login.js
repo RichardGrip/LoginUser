@@ -1,17 +1,25 @@
 import React from "react";
-import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Form, Input, Button } from "antd";
+import { useNavigate } from "react-router-dom";
 import "antd/dist/antd.css";
 import "./Login.css";
 
 const Login = () => {
   const [form] = Form.useForm();
+
+  const navigate = useNavigate();
   const [requiredMark, setRequiredMarkType] = useState("required");
 
   const onRequiredTypeChange = ({ requiredMarkValue }) => {
     setRequiredMarkType(requiredMarkValue);
   };
+
+  const onFinish = (e) => {
+    localStorage.setItem("isLogin", true);
+    setTimeout(() => navigate("/"), 2000);
+  };
+
   return (
     <div className="wrapper">
       <div className="container">
@@ -24,8 +32,8 @@ const Login = () => {
           }}
           onValuesChange={onRequiredTypeChange}
           requiredMark={requiredMark}
-          onSubmit
           action=""
+          onFinish={onFinish}
         >
           <Form.Item
             label="Email"
