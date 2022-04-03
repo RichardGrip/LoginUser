@@ -1,23 +1,30 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Divider, Table } from "antd";
+import { Button, Divider, Table, Skeleton } from "antd";
+import dayjs from "dayjs";
 import "antd/dist/antd.css";
 import "./Main.css";
 
 const Main = () => {
   const navigate = useNavigate();
+  const [dataSource, setDataSource] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   React.useEffect(() => {
     if (!localStorage.getItem("isLogin")) {
       navigate("/login");
     }
   }, []);
 
-  const [dataSource, setDataSource] = useState([]);
-
   React.useEffect(() => {
     fetch("https://test.relabs.ru/api/users/list")
       .then((response) => response.json())
-      .then((data) => setDataSource(data.items));
+      .then((data) => {
+        setTimeout(() => {
+          setLoading(false);
+          setDataSource(data.items);
+        }, 2000);
+      });
   }, []);
 
   const columns = [
@@ -40,6 +47,7 @@ const Main = () => {
       key: "id4",
       title: "Data",
       dataIndex: "ctime",
+      render: () => <p>{dayjs(dataSource.ctime).format("DD.MM.YYYY HH:mm")}</p>,
     },
     {
       key: "id5",
@@ -64,12 +72,17 @@ const Main = () => {
       <Divider />
       <div className="main">
         <div className="users">
-          <Table
-            key={dataSource.id}
-            columns={columns}
-            dataSource={dataSource}
-            pagination={{ pageSize: "5" }}
-          />
+          {loading && <Skeleton active />}
+          {dataSource.length ? (
+            <Table
+              key={dataSource.id}
+              columns={columns}
+              dataSource={dataSource}
+              pagination={{ pageSize: "5" }}
+            />
+          ) : loading ? null : (
+            <h1>You deleted all users!</h1>
+          )}
         </div>
         <div className="developments"></div>
       </div>
