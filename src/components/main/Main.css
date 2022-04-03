@@ -1,0 +1,48 @@
+.container2 { 
+    max-width: 1800px;
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+}
+
+.menu { 
+    display: flex;
+    width: 100%;
+    height: 50px;
+}
+
+.menu > span {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 25px;
+    line-height: 1.6;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.menu > span:hover {
+    border-bottom: solid blue 1px;
+}
+
+.ant-divider-horizontal { 
+    margin: 0;
+}
+
+.users {
+    width: 70%;
+    height: 100%;
+}
+
+.developments { 
+    width: 30%;
+    height: 100%;
+    background: red;
+}
+
+.main {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}

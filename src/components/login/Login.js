@@ -24,7 +24,7 @@ const Login = () => {
   return (
     <div className="wrapper">
       <div className="container">
-        <span>Авторизация</span>
+        <span className="avtorization">Авторизация</span>
         <Form
           form={form}
           layout="vertical"
@@ -60,12 +60,14 @@ const Login = () => {
             <Input.Password placeholder="input password" />
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit">
-              Авторизация
-            </Button>
+            <div className="button_spin">
+              <Button type="primary" htmlType="submit">
+                Авторизация
+              </Button>
+              <Spin spinning={state} />
+            </div>
           </Form.Item>
         </Form>
-        <Spin spinning={state} />
       </div>
     </div>
   );
