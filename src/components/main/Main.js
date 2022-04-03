@@ -54,8 +54,6 @@ const Main = () => {
     setDataSource(newData);
   };
 
-  // (user) => user.id
-
   return (
     <div className="container2">
       <div className="menu">
