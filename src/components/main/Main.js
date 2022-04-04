@@ -53,7 +53,11 @@ const Main = () => {
       key: "id5",
       title: "Action",
       dataIndex: "",
-      render: (el) => <Button onClick={() => isDelete(el)}>Delete</Button>,
+      render: (el) => (
+        <Button type="primary" danger onClick={() => isDelete(el)}>
+          Delete
+        </Button>
+      ),
     },
   ];
 
@@ -65,13 +69,14 @@ const Main = () => {
   return (
     <div className="container2">
       <div className="menu">
-        <span>Главная страница</span>
-        <span>Авторизация</span>
-        <span>Магазин</span>
+        <span onClick={() => navigate("/")}>Главная страница</span>
+        <span onClick={() => navigate("/login")}>Авторизация</span>
+        <span onClick={() => navigate("/store")}>Магазин</span>
       </div>
       <Divider />
       <div className="main">
         <div className="users">
+          <h1>Список пользователей</h1>
           {loading && <Skeleton active />}
           {dataSource.length ? (
             <Table
