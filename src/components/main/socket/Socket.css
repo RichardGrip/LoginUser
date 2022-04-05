@@ -1,0 +1,30 @@
+.events { 
+    display: flex;
+    flex-direction: row;
+}
+
+.table2 {
+    width: 100%; 
+    max-height: 10px;
+    height: 30px;
+    overflow: auto;
+    border-collapse: collapse; 
+   }
+
+.td { 
+    padding: 3px; 
+    border: 1px solid black; 
+    
+}
+
+.th {
+    padding: 3px; 
+    border: 1px solid black; 
+    background: #fafafa; 
+    padding: 16px 16px
+}
+
+.sub { 
+    height: 445px;
+    overflow: auto;
+}

@@ -17,14 +17,47 @@ const Socket = () => {
     };
   }, []);
 
-  console.log(sockets);
+  console.log("sokets: ", sockets);
 
   return (
-    <div>
-      {sockets?.map((el) => (
-        <p key={el.ctime}>{el.ctime}</p>
-      ))}
-    </div>
+    <>
+      <h1>События</h1>
+      {/* <div className="events">
+        <div className="tableData">
+          <h3>Время</h3>
+          {sockets?.map((el) => (
+            <p key={el.ctime}>{el.ctime}</p>
+          ))}
+        </div>
+
+        <div className="tableEvent">
+          <h3>События</h3>
+          {sockets?.map((el) => (
+            <p key={el.event}>{el.event}</p>
+          ))}
+        </div>
+      </div> */}
+      <div className="sub">
+        <table className="table2">
+          <tr>
+            <th className="th">Время</th>
+            <th className="th">События</th>
+          </tr>
+          <tr>
+            <td className="td">
+              {sockets?.map((el) => (
+                <p key={el.ctime}>{el.ctime}</p>
+              ))}
+            </td>
+            <td className="td">
+              {sockets?.map((el) => (
+                <p key={el.event}>{el.event}</p>
+              ))}
+            </td>
+          </tr>
+        </table>
+      </div>
+    </>
   );
 };
 
