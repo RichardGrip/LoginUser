@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import dayjs from "dayjs";
 import "antd/dist/antd.css";
 import "./Socket.css";
 
@@ -20,44 +21,27 @@ const Socket = () => {
   console.log("sokets: ", sockets);
 
   return (
-    <>
+    <div className="sub">
       <h1>События</h1>
-      {/* <div className="events">
-        <div className="tableData">
-          <h3>Время</h3>
-          {sockets?.map((el) => (
-            <p key={el.ctime}>{el.ctime}</p>
-          ))}
-        </div>
-
-        <div className="tableEvent">
-          <h3>События</h3>
-          {sockets?.map((el) => (
-            <p key={el.event}>{el.event}</p>
-          ))}
-        </div>
-      </div> */}
-      <div className="sub">
-        <table className="table2">
-          <tr>
-            <th className="th">Время</th>
-            <th className="th">События</th>
-          </tr>
-          <tr>
-            <td className="td">
-              {sockets?.map((el) => (
-                <p key={el.ctime}>{el.ctime}</p>
-              ))}
-            </td>
-            <td className="td">
-              {sockets?.map((el) => (
-                <p key={el.event}>{el.event}</p>
-              ))}
-            </td>
-          </tr>
-        </table>
-      </div>
-    </>
+      <table className="table2">
+        <tr>
+          <th className="th">Время</th>
+          <th className="th">События</th>
+        </tr>
+        <tr>
+          <td className="td">
+            {sockets?.map((el) => (
+              <p key={el.ctime}>{dayjs(el.ctime).format("DD.MM.YYYY HH:mm")}</p>
+            ))}
+          </td>
+          <td className="td">
+            {sockets?.map((el) => (
+              <p key={el.event}>{el.event}</p>
+            ))}
+          </td>
+        </tr>
+      </table>
+    </div>
   );
 };
 
