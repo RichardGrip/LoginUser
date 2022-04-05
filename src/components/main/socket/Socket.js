@@ -21,27 +21,31 @@ const Socket = () => {
   console.log("sokets: ", sockets);
 
   return (
-    <div className="sub">
+    <>
       <h1>События</h1>
-      <table className="table2">
-        <tr>
-          <th className="th">Время</th>
-          <th className="th">События</th>
-        </tr>
-        <tr>
-          <td className="td">
-            {sockets?.map((el) => (
-              <p key={el.ctime}>{dayjs(el.ctime).format("DD.MM.YYYY HH:mm")}</p>
-            ))}
-          </td>
-          <td className="td">
-            {sockets?.map((el) => (
-              <p key={el.event}>{el.event}</p>
-            ))}
-          </td>
-        </tr>
-      </table>
-    </div>
+      <div className="sub">
+        <table className="table2">
+          <tr>
+            <th className="th">Время</th>
+            <th className="th">События</th>
+          </tr>
+          <tr>
+            <td className="td">
+              {sockets?.map((el) => (
+                <p key={el.ctime}>
+                  {dayjs(el.ctime).format("DD.MM.YYYY HH:mm")}
+                </p>
+              ))}
+            </td>
+            <td className="td">
+              {sockets?.map((el) => (
+                <p key={el.event}>{el.event}</p>
+              ))}
+            </td>
+          </tr>
+        </table>
+      </div>
+    </>
   );
 };
 
