@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Divider, Table, Skeleton } from "antd";
 import dayjs from "dayjs";
+import Socket from "./socket/Socket";
 import "antd/dist/antd.css";
 import "./Main.css";
 
@@ -89,7 +90,9 @@ const Main = () => {
             <h1>You deleted all users!</h1>
           )}
         </div>
-        <div className="developments"></div>
+        <div className="developments">
+          <Socket />
+        </div>
       </div>
     </div>
   );
