@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Divider, Table, Skeleton } from "antd";
+import Header from "./header/Header";
 import dayjs from "dayjs";
 import Socket from "./socket/Socket";
 import "antd/dist/antd.css";
@@ -69,11 +70,7 @@ const Main = () => {
 
   return (
     <div className="container2">
-      <div className="menu">
-        <span onClick={() => navigate("/")}>Главная страница</span>
-        <span onClick={() => navigate("/login")}>Авторизация</span>
-        <span onClick={() => navigate("/store")}>Магазин</span>
-      </div>
+      <Header />
       <Divider />
       <div className="main">
         <div className="users">

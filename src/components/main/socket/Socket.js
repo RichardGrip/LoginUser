@@ -18,8 +18,6 @@ const Socket = () => {
     };
   }, []);
 
-  console.log("sokets: ", sockets);
-
   return (
     <>
       <h1>События</h1>
