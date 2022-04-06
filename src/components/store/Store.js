@@ -1,7 +1,9 @@
 import React from "react";
-import "./Store.css";
 import { data } from "./mockData";
+import { Divider } from "antd";
 import Header from "../main/header/Header";
+import "antd/dist/antd.css";
+import "./Store.css";
 
 const Store = () => {
   return (
@@ -9,6 +11,7 @@ const Store = () => {
       <header className="storeHeader">
         <div className="container3">
           <Header />
+          <Divider />
         </div>
       </header>
       <div className="container3">
@@ -16,7 +19,10 @@ const Store = () => {
           {data.map((el) => {
             return (
               <div className="block" key={el.id}>
-                <img className="foto" src={el.img} alt={el.name} />
+                <div className="foto2">
+                  <img className="foto" src={el.img} alt={el.name} />
+                  <button className="fast">Быстрый просмотр</button>
+                </div>
                 <div className="priceSale">
                   <p className="price">{el.price}</p>
                   <p className="old">{el.sale}</p>
