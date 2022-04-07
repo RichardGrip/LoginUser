@@ -22,10 +22,10 @@ const Main = () => {
     fetch("https://test.relabs.ru/api/users/list")
       .then((response) => response.json())
       .then((data) => {
-        setTimeout(() => {
-          setLoading(false);
-          setDataSource(data.items);
-        }, 2000);
+        // setTimeout(() => {
+        setLoading(false);
+        setDataSource(data.items);
+        // }, 2000);
       });
   }, []);
 

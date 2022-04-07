@@ -40,8 +40,8 @@ const Login = () => {
             label="Email"
             name="email"
             rules={[
-              { required: true, message: "Please enter your email" },
-              { type: "email", message: "Please enter a valid email" },
+              { required: true, message: "Пожалуйста введите свою почту" },
+              { type: "email", message: "Введите валидную почту" },
             ]}
             hasFeedback
           >
@@ -51,9 +51,12 @@ const Login = () => {
             label="Password"
             name="password"
             rules={[
-              { required: true, message: "Please enter your password" },
+              { required: true, message: "Пожалуйста введите свой пароль" },
               { whitespace: true },
-              { min: 8 },
+              {
+                pattern: new RegExp(/^(?=.*?[A-Z])(?=.*?[a-z]).{8,}$/),
+                message: "Введите валидный пароль",
+              },
             ]}
             hasFeedback
           >
