@@ -31,7 +31,8 @@ const Socket = () => {
             <td className="td">
               {sockets?.map((el) => (
                 <p key={el.ctime}>
-                  {dayjs(el.ctime).format("DD.MM.YYYY HH:mm")}
+                  {dayjs().format("DD.MM.YYYY HH:mm")}
+                  {/*  */}
                 </p>
               ))}
             </td>
