@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Divider, Table, Skeleton } from "antd";
 import Header from "./header/Header";
@@ -10,24 +10,34 @@ import "./Main.css";
 const Main = () => {
   const navigate = useNavigate();
   const [dataSource, setDataSource] = useState([]);
+  const [dataSource2, setDataSource2] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!localStorage.getItem("isLogin")) {
       navigate("/login");
     }
   }, []);
 
   React.useEffect(() => {
-    fetch("https://test.relabs.ru/api/users/list?limit=15")
-      .then((response) => response.json())
-      .then((data) => {
-        setTimeout(() => {
-          setLoading(false);
-          setDataSource(data.items);
-        }, 2000);
-      });
-  }, []);
+    (async () => {
+      try {
+        setLoading(true);
+        const response = await fetch("https://test.relabs.ru/api/users/list");
+        const json = await response.json();
+        setDataSource(json.total);
+        const response1 = await fetch(
+          `https://test.relabs.ru/api/users/list?limit=${dataSource}`
+        );
+        const json1 = await response1.json();
+        setLoading(false);
+        setDataSource2(json1.items);
+      } catch (e) {
+        setLoading(false);
+        console.error(e);
+      }
+    })();
+  }, [dataSource]);
 
   const columns = [
     {
@@ -49,7 +59,9 @@ const Main = () => {
       key: "id4",
       title: "Data",
       dataIndex: "ctime",
-      render: () => <p>{dayjs(dataSource.ctime).format("DD.MM.YYYY HH:mm")}</p>,
+      render: () => (
+        <p>{dayjs(dataSource2.ctime).format("DD.MM.YYYY HH:mm")}</p>
+      ),
     },
     {
       key: "id5",
@@ -64,8 +76,8 @@ const Main = () => {
   ];
 
   const isDelete = (elDelete) => {
-    const newData = dataSource.filter((el) => el.id !== elDelete.id);
-    setDataSource(newData);
+    const newData = dataSource2.filter((el) => el.id !== elDelete.id);
+    setDataSource2(newData);
   };
 
   return (
@@ -76,11 +88,11 @@ const Main = () => {
         <div className="users">
           <h1>Список пользователей</h1>
           {loading && <Skeleton active />}
-          {dataSource.length ? (
+          {dataSource2.length ? (
             <Table
-              key={dataSource.id}
+              key={dataSource2.id}
               columns={columns}
-              dataSource={dataSource}
+              dataSource={dataSource2}
               pagination={{ pageSize: "5" }}
             />
           ) : loading ? null : (
